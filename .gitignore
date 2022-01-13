@@ -1,0 +1,21 @@
+# Object files
+*.o
+*.d
+
+# Executables
+*.exe
+*.out
+*.app
+CA_SIMULATOR
+
+# IDE bulshitery
+.vscode
+
+# Result files
+*.txt
+*.avi
+*.mp4
+
+obj
+.vscode
+bin
