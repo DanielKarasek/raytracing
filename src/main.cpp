@@ -94,10 +94,10 @@ int main(int argc, char *argv[])
   
   // IMAGE
   float aspect_ratio = 3.f/2.f;
-  const int imageWidth{1200};
+  const int imageWidth{400};
   const int imageHeight{static_cast<int>(imageWidth/aspect_ratio)};
-  const int samplePerPixel{500};
-  const int maxDepth{50};
+  const int samplePerPixel{10};
+  const int maxDepth{5};
 
   // // WORLD
   // HittableList worldObjects(5);
