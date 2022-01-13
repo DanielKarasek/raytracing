@@ -16,6 +16,6 @@ CA_SIMULATOR
 *.avi
 *.mp4
 
-obj
-.vscode
-bin
+obj/
+.vscode/
+bin/
