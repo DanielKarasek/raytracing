@@ -21,7 +21,7 @@ DEPS := $(OBJS:.o=.d)
 # INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 #linker flags
-LDFLAGS = 
+LDFLAGS = -pthread
 
 #preprocesor flags
 CPPFLAGS = -Iinclude -MP -MMD

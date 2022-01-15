@@ -38,7 +38,7 @@ class Camera
 
 
 
-    ray getRay(float s, float t)
+    ray getRay(float s, float t)const
     {
       
       vec3 r = lens_radius * random_in_disk();
