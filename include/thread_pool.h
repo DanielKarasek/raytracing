@@ -23,6 +23,7 @@ class ThreadPool
     void infinite_loop();
     void add_job(std::function<void()> job);
     void shutdown();
+    bool any_jobs();
 
     ~ThreadPool(){if (!m_is_shut) shutdown();}
 

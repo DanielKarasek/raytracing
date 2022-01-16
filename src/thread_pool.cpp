@@ -31,6 +31,12 @@ void ThreadPool::add_job(std::function<void()> new_job)
   cv.notify_one();
 }
 
+bool ThreadPool::any_jobs()
+{
+  return !m_jobs.empty();
+
+}
+
 void ThreadPool::shutdown()
 {
   m_shutdown_flag = true;
@@ -41,3 +47,4 @@ void ThreadPool::shutdown()
   m_pool.clear();
   m_is_shut = true;
 }
+

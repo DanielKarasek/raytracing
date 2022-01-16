@@ -115,7 +115,7 @@ void get_single_val(std::array<color, n> &arr,
     c += rayColor(r, world, max_depth);
   }
   // std::cerr << row << ' ' << col << ' ' << im_width  << ' ' << (row-1)*im_width + col<<'\n';
-  arr[(row-1)*im_width + col] = c;
+  arr[col] = c;
 }
 
 int main(int argc, char *argv[])
@@ -123,9 +123,9 @@ int main(int argc, char *argv[])
   
   // IMAGE
   const float aspect_ratio = 3.f/2.f;
-  const int imageWidth{600};
+  const int imageWidth{1920};
   const int imageHeight{static_cast<int>(imageWidth/aspect_ratio)};
-  const int samplePerPixel{40};
+  const int samplePerPixel{5};
   const int maxDepth{20};
 
   // // WORLD
@@ -152,10 +152,10 @@ int main(int argc, char *argv[])
   float lens_radius = 0.0001;
   Camera cam{vfov, aspect_ratio, lookfrom, lookat, vup, distance, lens_radius};
   
-  std::array<color, imageHeight*imageWidth> rendered_image;
+  std::array<color, imageWidth> rendered_image;
   std::function<void(int, int)> job{[&rendered_image, imageWidth, imageHeight, maxDepth, samplePerPixel, &cam, &worldObjects](int col, int row)
                         {
-                          get_single_val<imageHeight*imageWidth>(rendered_image, imageWidth, imageHeight, maxDepth, col, row, samplePerPixel, cam, worldObjects);
+                          get_single_val<imageWidth>(rendered_image, imageWidth, imageHeight, maxDepth, col, row, samplePerPixel, cam, worldObjects);
                         }};
   
   ThreadPool pool{};
@@ -169,28 +169,18 @@ int main(int argc, char *argv[])
     {
       std::function<void()> concrete_job {[job, col, row](){job(col, row);}};
       pool.add_job(concrete_job);
-      // color c {0, 0, 0};
-      // for (int sampledCount{0}; sampledCount<samplePerPixel; sampledCount++)
-      // {
-      //   double u = static_cast<double>(col+getRandomFloat())/(imageWidth-1);
-      //   double v = static_cast<double>(row+getRandomFloat())/(imageHeight-1);
-        
-      //   ray r = cam.getRay(u, v);
-      //   c += rayColor(r, worldObjects, maxDepth);
-      // }
+
       // writeColor(std::cout, c, samplePerPixel);
     }
-    std::cout << '\n';
-  }
-  pool.shutdown();
-  for (int row{imageHeight}; row>0; --row)
-  {
-    for (int col{}; col<imageWidth; ++col)
+    while(pool.any_jobs());
+    for (auto &col : rendered_image)
     {
-      writeColor(std::cout, rendered_image[(row-1)*imageWidth+col], samplePerPixel);
+      writeColor(std::cout, col, samplePerPixel);
     }
     std::cout << '\n';
   }
+
+  pool.shutdown();
   std::cerr << "done";
   
   return 0;
