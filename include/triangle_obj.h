@@ -10,7 +10,7 @@ class TriangleMeshHittable: public Hittable{
 
   public:
     TriangleMeshHittable(shared_ptr<Material> material):material{material}{}
-    virtual bool hit(const ray &ray, float tMin, float tMax, HitRecord &hitRecord)const override;
+    virtual bool hit(const Ray &ray, float t_min, float t_max, HitRecord &hit_record)const override;
 
   protected:
   

@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-void ignoreLine(std::istream &is);
+void ignore_line(std::istream &is);
 
 template <typename T>
 T get_integral_value(std::string_view text, bool (*condition)(T))
@@ -17,16 +17,16 @@ T get_integral_value(std::string_view text, bool (*condition)(T))
     {
       std::cout << "Input failed due to invalid value\n";
       std::cin.clear();
-      ignoreLine(std::cin);
+      ignore_line(std::cin);
     }
     else if (!condition(val))
     {
       std::cout << "Input failed due to value not passing condition\n";
-      ignoreLine(std::cin);
+      ignore_line(std::cin);
     }
     else
     {
-      ignoreLine(std::cin);
+      ignore_line(std::cin);
       return val;
     }
   }

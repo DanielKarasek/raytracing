@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "vec3.h"
 
-void writeColor(std::ostream& os, color c, int samples)
+void write_color(std::ostream& os, const color &c, int samples)
 {
   float r = c.x();
   float g = c.y();

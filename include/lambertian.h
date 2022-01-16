@@ -12,7 +12,7 @@ class Lambertian: public Material
 
   public:
     Lambertian(color albedo):albedo{albedo}{}
-    virtual bool scatter(const ray& ray_in, const HitRecord &rec, color &attenuation, ray &scattered)const;
+    virtual bool scatter(const Ray& ray_in, const HitRecord &rec, color &attenuation, Ray &scattered)const;
   protected:
     color albedo;
 };

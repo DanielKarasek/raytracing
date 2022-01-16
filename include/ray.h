@@ -2,10 +2,10 @@
 #define RAY_AHDJKA58190_H
 #include "vec3.h"
 
-class ray{
+class Ray{
   public:
-    ray():orig{}, direc{}{}
-    ray(const point3& origin, const vec3& direction):orig(origin), direc{direction}{}
+    Ray():orig{}, direc{}{}
+    Ray(const point3& origin, const vec3& direction):orig(origin), direc{direction}{}
 
     vec3 direction()const{return direc;}
     point3 origin()const{return orig;}

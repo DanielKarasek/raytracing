@@ -8,17 +8,17 @@ class Material;
 
 struct HitRecord
 {
-  point3 hitPoint;
-  vec3 unitNormal;
+  point3 hit_point;
+  vec3 unit_normal;
   float t;
 
   shared_ptr<Material> material;
 
-  bool frontFace;
-  void setFrontFace(const ray& ray, const vec3& outNormal)
+  bool front_face;
+  void setFrontFace(const Ray& ray, const vec3& out_normal)
   {
-    frontFace = dot(ray.direction(), outNormal)>=0;
-    unitNormal = frontFace ? -outNormal : outNormal;
+    front_face = dot(ray.direction(), out_normal)>=0;
+    unit_normal = front_face ? -out_normal : out_normal;
   }
 };
 
@@ -26,7 +26,7 @@ struct HitRecord
 class Hittable
 {
   public:
-    virtual bool hit(const ray &ray, float tMin, float tMax, HitRecord &hitRecord)const = 0;
+    virtual bool hit(const Ray &ray, float t_min, float t_max, HitRecord &hit_record)const = 0;
 };
 
 

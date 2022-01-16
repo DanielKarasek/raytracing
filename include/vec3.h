@@ -49,10 +49,10 @@ class vec3{
     }
   protected:
     float e[3];
-  friend std::ostream& operator<<(std::ostream &out, vec3 &v);
+  friend std::ostream& operator<<(std::ostream &out, const vec3 &v);
 };
 
-std::ostream& operator<<(std::ostream &out, vec3 &v);
+std::ostream& operator<<(std::ostream &out, const vec3 &v);
 vec3 operator+(const vec3 &u, const vec3 &v);
 vec3 operator-(const vec3 &u, const vec3 &v);
 vec3 operator*(const vec3 &u, float t);
@@ -62,17 +62,17 @@ vec3 operator/(const vec3 &u, float t);
 float dot(const vec3 &u, const vec3 &v);
 vec3 cross(const vec3 &u, const vec3 &v);
 vec3 unit_vector(const vec3 &v);
-vec3 randomVector();
-vec3 randomVector(float min, float max);
-vec3 randomInSphere();
-vec3 randomUnitVec();
+vec3 random_vector();
+vec3 random_vector(float min, float max);
+vec3 random_in_sphere();
+vec3 random_unit_vec();
 
 vec3 random_in_disk();
 
-class ray;
+class Ray;
 
-vec3 refract(const ray &ray_in, const vec3 &normal, double refractionCoefficient);
-vec3 reflect(const ray &ray_in, const vec3 &normal);
+vec3 refract(const Ray &ray_in, const vec3 &normal, double refractionCoefficient);
+vec3 reflect(const Ray &ray_in, const vec3 &normal);
 
 using point3 = vec3;
 using color = vec3;

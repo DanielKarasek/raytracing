@@ -34,7 +34,6 @@ void ThreadPool::add_job(std::function<void()> new_job)
 bool ThreadPool::any_jobs()
 {
   return !m_jobs.empty();
-
 }
 
 void ThreadPool::shutdown()

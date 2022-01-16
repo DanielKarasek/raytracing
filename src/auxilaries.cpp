@@ -2,7 +2,7 @@
 #include <fstream>
 #include <limits>
 
-void ignoreLine(std::istream &is)
+void ignore_line(std::istream &is)
 {
   is.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

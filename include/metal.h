@@ -12,7 +12,7 @@ class Metal: public Material
 
   public:
     Metal(color albedo, double fuzziness):albedo{albedo}, fuzziness{fuzziness}{}
-    virtual bool scatter(const ray& ray_in, const HitRecord &rec, color &attenuation, ray &scattered)const;
+    virtual bool scatter(const Ray& ray_in, const HitRecord &hit_rec, color &attenuation, Ray &scattered)const;
   protected:
     color albedo;
     double fuzziness;

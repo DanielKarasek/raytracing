@@ -2,7 +2,7 @@
 #include <cmath>
 #include "vec3.h"
 #include "utilities.h"
-std::ostream& operator<<(std::ostream &out, vec3 &v)
+std::ostream& operator<<(std::ostream &out, const vec3 &v)
 {
   out << v.e[0] << ' '
       << v.e[1] << ' ' 
@@ -60,21 +60,21 @@ vec3 unit_vector(const vec3 &v)
 }
 
 
-vec3 randomVector()
+vec3 random_vector()
 {
-  return {getRandomFloat(), getRandomFloat(), getRandomFloat()};
+  return {get_random_float(), get_random_float(), get_random_float()};
 }
 
-vec3 randomVector(float min, float max)
+vec3 random_vector(float min, float max)
 {
-  return randomVector()*(max-min)+vec3(min, min, min);
+  return random_vector()*(max-min)+vec3(min, min, min);
 }
 
-vec3 randomInSphere()
+vec3 random_in_sphere()
 {
-  vec3 vect = randomVector(-1, 1);
+  vec3 vect = random_vector(-1, 1);
   while (vect.lenght_squared() > 1)
-    vect = randomVector(-1, 1);
+    vect = random_vector(-1, 1);
   return vect;
 }
 
@@ -83,20 +83,20 @@ vec3 random_in_disk()
   vec3 vect;
   while(true)
   {
-    vect = vec3(getRandomFloat(), getRandomFloat(), 0);
+    vect = vec3(get_random_float(), get_random_float(), 0);
     vect = vect * 2 - vec3(1, 1, 0);
     if (vect.lenght()>1) continue;
     return vect;
   }
 }
 
-vec3 randomUnitVec()
+vec3 random_unit_vec()
 {
-  return unit_vector(randomInSphere());
+  return unit_vector(random_in_sphere());
 }
 
 
-vec3 refract(const ray &ray_in, const vec3 &normal, double refractionCoefficient)
+vec3 refract(const Ray &ray_in, const vec3 &normal, double refractionCoefficient)
 {
   vec3 vec_in = unit_vector(ray_in.direction());
   double cos = std::fmin(dot(normal, - vec_in), 1);
@@ -106,7 +106,7 @@ vec3 refract(const ray &ray_in, const vec3 &normal, double refractionCoefficient
   return perpendicular + parralel;
 }
 
-vec3 reflect(const ray &ray_in, const vec3 &normal)
+vec3 reflect(const Ray &ray_in, const vec3 &normal)
 {
   return ray_in.direction() - 2*dot(ray_in.direction(), normal)*normal; 
 }

@@ -12,14 +12,14 @@ float radians2degree(float radians)
   return 180*radians/pi;
 }
 
-float getRandomFloat()
+float get_random_float()
 {
   static std::mt19937 mt;
   static std::uniform_real_distribution<double> gen(0,1);
   return gen(mt);
 }
 
-float getRandomFloat(float min, float max)
+float get_random_float(float min, float max)
 {
-  return getRandomFloat()*(max-min)+min;
+  return get_random_float()*(max-min)+min;
 }

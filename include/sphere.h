@@ -11,7 +11,7 @@ class Sphere: public Hittable
 {
   public:
     Sphere(float radius, point3 center, shared_ptr<Material> material):radius{radius}, center{center}, material{material}{}
-    virtual bool hit(const ray &ray, float tMin, float tMax, HitRecord &hitRecord)const override;
+    virtual bool hit(const Ray &ray, float t_min, float t_max, HitRecord &hit_record)const override;
   protected:
     float radius;
     point3 center;

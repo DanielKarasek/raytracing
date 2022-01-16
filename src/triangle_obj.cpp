@@ -6,10 +6,10 @@
 vec3 triangles[] = {{-1,-1,-1}, {1,-1,-1}, {0,1,-1}, {1,-1,-1}, {2,0.5,-1},{0,1,-1}};
 
 
-bool TriangleMeshHittable::hit(const ray &ray, float tMin, float tMax, HitRecord &hitRecord)const
+bool TriangleMeshHittable::hit(const Ray &ray, float t_min, float t_max, HitRecord &hit_record)const
 {
   double tmp_t;
-  double t_closest = tMax;
+  double t_closest = t_max;
   double u, v;
   bool hit_something {false};
 
@@ -34,7 +34,7 @@ bool TriangleMeshHittable::hit(const ray &ray, float tMin, float tMax, HitRecord
 
     double nom = -dot(ray.origin(), normal) + dot(v0, normal);
     tmp_t = nom/denom;
-    if (tmp_t < 0 || tmp_t < tMin || tmp_t > tMax || tmp_t > t_closest) continue;
+    if (tmp_t < 0 || tmp_t < t_min || tmp_t > t_max || tmp_t > t_closest) continue;
     
     // get hit point
     vec3 hit_point = ray.origin() + tmp_t*ray.direction();
@@ -59,10 +59,10 @@ bool TriangleMeshHittable::hit(const ray &ray, float tMin, float tMax, HitRecord
 
   }
   if (!hit_something) return false;
-  hitRecord.hitPoint = ray.origin() + t_closest*ray.direction();
-  hitRecord.material = this->material;
-  hitRecord.t = t_closest;
-  hitRecord.setFrontFace(ray, unit_vector(closest_normal));
+  hit_record.hit_point = ray.origin() + t_closest*ray.direction();
+  hit_record.material = this->material;
+  hit_record.t = t_closest;
+  hit_record.setFrontFace(ray, unit_vector(closest_normal));
   return true;
 }
 

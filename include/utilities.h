@@ -17,9 +17,9 @@ float degree2radians(float degree);
 
 float radians2degree(float radians);
 
-float getRandomFloat();
+float get_random_float();
 
-float getRandomFloat(float min, float max);
+float get_random_float(float min, float max);
 //
 #include <vec3.h>
 #include <ray.h>
